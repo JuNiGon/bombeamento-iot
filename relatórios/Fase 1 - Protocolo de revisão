@@ -1,0 +1,126 @@
+# Protocolo de revisão sistemática
+
+Controle de bombeamento com inversor de frequência sob telemetria degradada
+
+Data de registro: 14/11/2026 (anterior à execução das buscas)
+
+Alterações posteriores são registradas na seção 9, com data e justificativa, sem modificar o texto original.
+
+## 1. Objetivo e pergunta
+
+Esta revisão verifica se existe, na literatura, algum estudo sobre estações de bombeamento com velocidade variável que reúna, em uma mesma avaliação, as quatro características a seguir:
+
+- (a) telemetria degradada por atraso, perda de pacotes ou ruído;
+- (b) margem ou setpoint de pressão dependente da idade ou da confiabilidade da informação;
+- (c) estimativa física de vazão (soft sensor) usada como redundância ou índice de confiança na malha de controle;
+- (d) energia (kWh/m³ ou equivalente) contabilizada com as perdas do inversor.
+
+Perguntas auxiliares:
+
+1. Quais trabalhos tratam cada característica isoladamente e com que tipo de validação (simulação, bancada ou campo)?
+2. Quais ambientes de simulação abertos oferecem camada de comunicação degradada ou contabilidade de energia?
+3. Quais classes de dado falso e quais métodos de detecção por resíduo físico existem para bombas em redes de água?
+
+Critério de resposta: a lacuna é considerada confirmada se nenhum trabalho incluído reunir as quatro características. Se algum reunir três ou mais, o foco do estudo é ajustado.
+
+## 2. Bases de dados
+
+| Base | Observação |
+| --- | --- |
+| Scopus | Busca em título, resumo e palavras-chave |
+| Web of Science | Idem |
+| IEEE Xplore | Controle, redes e IoT |
+| ScienceDirect | Engenharia hidráulica e de controle |
+| Google Scholar | Complementar; primeiros 200 resultados por string |
+| arXiv | Pré-publicações recentes |
+| Portal de Periódicos da CAPES | Acesso institucional; inclui literatura em português |
+
+Buscas complementares: encadeamento de referências (anteriores e posteriores) dos trabalhos incluídos, e leitura da documentação e do código do EPyT-Flow e do EPyT-Control.
+
+## 3. Strings de busca
+
+Cada string é adaptada à sintaxe da base. Registra-se a forma exata, a data e o número de resultados.
+
+| ID | Foco | String |
+| --- | --- | --- |
+| S1 | Controle de bombas sob comunicação degradada | `pump AND ("model predictive control" OR "variable speed") AND ("communication delay" OR "packet loss" OR telemetry)` |
+| S2 | Dado falso e resíduo físico | `"water distribution" AND ("false data injection" OR "cyber-physical attack") AND pump AND (residual OR "soft sensor")` |
+| S3 | Disparo por evento em sistemas de água | `"event-triggered control" AND water` |
+| S4 | Idade da informação | `"age of information" AND (control OR water)` |
+| S5 | Soft sensor de vazão | `("soft sensor" OR "virtual sensor") AND pump AND flow AND power` |
+
+Strings em português (Portal CAPES e Google Scholar):
+
+- `bombeamento "inversor de frequência" controle pressão telemetria`
+- `"eficiência energética" abastecimento de água bombeamento controle`
+
+Strings criadas durante o processo são listadas numa tabela própria, com data e motivo.
+
+Período: 2010 a 2026, exceto trabalhos fundadores (controle em rede, idade da informação), incluídos por encadeamento de referências. Idiomas: inglês e português.
+
+## 4. Critérios de elegibilidade
+
+Inclusão (todos devem ser atendidos):
+
+- I1. Aplicação em bombeamento ou distribuição de água, ou em bombas centrífugas de velocidade variável com aplicação equivalente.
+- I2. Aborda ao menos um dos temas: degradação de comunicação ou telemetria; estimação física de vazão ou da curva da bomba a partir de dados; dado falso com resíduo físico; energia de bombeamento com controle de velocidade.
+- I3. Avaliação quantitativa (simulação, bancada ou campo) com resultados numéricos.
+- I4. Texto completo acessível.
+
+Exclusão (qualquer um):
+
+- E1. Sem avaliação numérica.
+- E2. Sem relação com bombas de velocidade variável ou com sistemas de água.
+- E3. Duplicata ou versão preliminar de trabalho já incluído (mantém-se a versão mais completa).
+- E4. Fora dos idiomas definidos.
+- E5. Texto completo inacessível após tentativa pelo Portal CAPES e contato com os autores.
+
+## 5. Processo de seleção
+
+1. Executar as strings e exportar os resultados para o Zotero, com a data da busca.
+2. Remover duplicatas.
+3. Triagem por título e resumo contra I1 e I2, registrando o motivo de cada exclusão.
+4. Leitura do texto completo contra I1 a I4.
+5. Extração de dados dos trabalhos incluídos (seção 6).
+6. Preenchimento do diagrama de fluxo (identificados, duplicatas, triados, lidos integralmente, incluídos), no formato PRISMA.
+
+A triagem é feita por um único revisor, em duas passadas separadas por pelo menos um dia, com registro das divergências. Essa limitação é declarada no texto final.
+
+## 6. Campos de extração
+
+| Campo | Valores ou formato |
+| --- | --- |
+| Identificação | Autores, ano, veículo |
+| Aplicação | Bombeamento, rede de distribuição, outra |
+| Controlador | PID, PID compensado, MPC, outro (descrever) |
+| Degradação de comunicação modelada | Atraso, jitter, perda (Bernoulli ou em rajadas), ruído, amostragem, nenhuma |
+| Margem ou setpoint adaptativo à informação | Sim ou não; critério utilizado |
+| Soft sensor físico de vazão | Sim ou não; entradas; uso (redundância, índice de confiança, outro) |
+| Dado falso | Classes (viés, rampa, repetição, outra); método de detecção |
+| Métrica de energia | kWh/m³, custo, outra, nenhuma; inclui perdas do inversor (sim ou não) |
+| Validação | Simulação, bancada, campo, dados reais |
+| Ferramenta de simulação | WNTR, EPANET, EPyT-Flow, própria, outra |
+| Código ou dados abertos | Sim (endereço) ou não |
+| Resultado principal | Uma frase |
+| Limitações declaradas | Texto |
+| Características (a) a (d) | 0 ou 1 para cada, com o trecho que justifica |
+
+## 7. Produtos da revisão
+
+- Matriz trabalho por característica (a) a (d), com a soma por trabalho.
+- Diagrama de fluxo da seleção.
+- Tabela de ferramentas de simulação e do que cada uma oferece.
+- Memorando de uma página indicando se a lacuna se confirma, se ajusta ou deixa de existir.
+
+## 8. Ameaças à validade
+
+- Revisor único, mitigado pela dupla passada.
+- Cobertura limitada pelas strings e pelas bases; trabalhos com vocabulário distinto podem não ser recuperados. Mitigação: encadeamento de referências e strings adicionais.
+- Viés de publicação, pela baixa frequência de resultados negativos publicados.
+- Parte das leituras anteriores ao protocolo foi feita apenas por resumo; esses trabalhos passam pela triagem formal.
+
+## 9. Desvios do protocolo
+
+| Data | Alteração | Justificativa |
+| --- | --- | --- |
+| | | |

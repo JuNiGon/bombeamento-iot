@@ -1,0 +1,434 @@
+# RELATÓRIO TÉCNICO DE ENTREVISTA
+## Experiência industrial em sistemas de bombeamento, instrumentação, automação e eficiência energética
+
+**Projeto de pesquisa:** Bombeamento com telemetria IoT degradada: custo energético e margem adaptativa de pressão.
+
+**Fonte das informações:** Relato de um profissional com experiência técnica em ambiente industrial de usina de cana-de-açúcar para produção de álcool.
+
+**Natureza do documento:** Relatório de entrevista exploratória, elaborado a partir das respostas fornecidas pelo profissional.
+
+---
+
+## 1. Apresentação
+
+Este relatório apresenta uma análise das informações obtidas em uma conversa com um técnico industrial experiente, que trabalhou em uma usina de processamento de cana-de-açúcar para produção de álcool.
+
+A entrevista teve como finalidade compreender situações práticas relacionadas ao funcionamento de bombas, motores elétricos, inversores de frequência, sensores, instrumentação industrial, comunicação entre equipamentos, manutenção e consumo energético.
+
+A investigação está relacionada à pesquisa sobre os impactos da degradação da telemetria IoT no desempenho energético de sistemas de bombeamento, considerando problemas como atraso de comunicação, perda de pacotes, ruído de medição e informações incorretas.
+
+Também se busca compreender como uma margem de pressão adaptativa, ajustada de acordo com a confiabilidade e a idade das informações dos sensores, poderia contribuir para reduzir o consumo de energia sem comprometer a pressão mínima necessária ao processo.
+
+As informações da entrevista representam a experiência prática do profissional e não devem ser interpretadas como resultados experimentais ou dados quantitativos de uma estação específica de abastecimento de água.
+
+## 2. Caracterização dos sistemas de bombeamento
+
+O profissional relatou experiência com diferentes equipamentos de bombeamento utilizados nos processos industriais da usina.
+
+Entre os exemplos mencionados estão:
+
+- Bombas de captação de água;
+- Bombas de caldo provenientes da moenda;
+- Equipamentos associados ao transporte de fluidos em diferentes etapas industriais.
+
+A escolha das bombas dependia das características de cada processo. Segundo o entrevistado, não existia um único equipamento adequado para todas as aplicações.
+
+A seleção considerava fatores como:
+
+- Vazão necessária;
+- Altura manométrica;
+- Pressão de operação;
+- Tipo de fluido transportado;
+- Características de vedação;
+- Tipo de selo mecânico;
+- Rotação;
+- Local de instalação;
+- Condições ambientais;
+- Necessidades específicas do processo industrial.
+
+Essa informação demonstra que o dimensionamento e a operação de sistemas de bombeamento dependem de diferentes variáveis hidráulicas e operacionais.
+
+### Relação com a pesquisa
+
+Esse relato reforça a necessidade de considerar as características hidráulicas da instalação ao estudar o consumo energético.
+
+Uma bomba não deve ser analisada apenas pela potência nominal do motor. Também é necessário considerar a vazão, a altura manométrica, o rendimento e as condições de operação.
+
+Para os experimentos computacionais, isso significa que o modelo deverá representar adequadamente a relação entre vazão, pressão, velocidade de rotação e potência consumida.
+
+## 3. Principais problemas observados nos sistemas de bombeamento
+
+O entrevistado identificou diversos problemas recorrentes durante a operação dos equipamentos.
+
+Entre os principais foram mencionados:
+
+1. Cavitação;
+2. Vazamentos pelas vedações;
+3. Vibrações;
+4. Desgaste prematuro de componentes;
+5. Folgas nas conexões;
+6. Desalinhamento;
+7. Ruídos anormais;
+8. Problemas de fixação dos equipamentos.
+
+Segundo o profissional, vibrações e ruídos estavam entre os primeiros sinais percebidos quando um equipamento começava a apresentar condições inadequadas de funcionamento.
+
+Também relatou que equipamentos desalinhados, com fixação inadequada ou submetidos à cavitação poderiam apresentar aumento do consumo energético.
+
+Esse aumento era percebido pelos operadores e pela equipe responsável pela casa de força, por meio do acompanhamento do consumo de energia e dos geradores.
+
+### Relação com a pesquisa
+
+Essas observações são relevantes porque demonstram que o consumo energético não depende exclusivamente da estratégia de controle.
+
+Condições mecânicas e hidráulicas também podem aumentar a energia necessária para realizar o bombeamento.
+
+Portanto, a pesquisa deverá distinguir duas situações:
+
+- **Degradação da telemetria:** informações atrasadas, ausentes, ruidosas ou incorretas utilizadas pelo controlador.
+- **Degradação física do equipamento:** desgaste, desalinhamento, cavitação, vazamentos e alterações no rendimento da bomba.
+
+Essa distinção é fundamental para evitar atribuir à comunicação um aumento de consumo que, na realidade, pode ter sido causado por problemas mecânicos ou hidráulicos.
+
+Uma possibilidade para trabalhos futuros é investigar como falhas de telemetria podem dificultar a identificação de problemas físicos no equipamento.
+
+## 4. Utilização de inversores de frequência
+
+O profissional confirmou que alguns equipamentos da usina utilizavam inversores de frequência, enquanto outros não podiam utilizar esse recurso em razão das características de sua aplicação.
+
+A definição da velocidade de operação dependia da equipe operacional.
+
+O entrevistado informou que o ajuste não era necessariamente automático: em determinadas situações, dependia da intervenção de um operador.
+
+Também relatou que a redução manual da rotação era utilizada como uma estratégia para diminuir o consumo energético, respeitando as necessidades do processo.
+
+### Relação com a pesquisa
+
+Esse relato possui grande importância para o projeto.
+
+Ele demonstra a existência de uma oportunidade de investigação relacionada à substituição ou ao aprimoramento de ajustes operacionais manuais por estratégias inteligentes de controle.
+
+A pesquisa poderá avaliar diferentes estratégias:
+
+- Controle convencional com PID;
+- PID com setpoint de pressão compensado;
+- Controle preditivo baseado em modelo (MPC);
+- Controle com margem de pressão adaptativa.
+
+O objetivo será investigar se um controlador consegue ajustar a velocidade da bomba de maneira mais eficiente, considerando as condições hidráulicas e a qualidade das informações recebidas dos sensores.
+
+Entretanto, a pesquisa deverá respeitar as limitações físicas e operacionais da instalação. Nem todo equipamento pode ter sua rotação alterada livremente.
+
+## 5. Instrumentação e sensores industriais
+
+O técnico relatou que algumas máquinas possuíam sensores internos, enquanto outros equipamentos utilizavam sensores externos específicos.
+
+Cada equipamento possuía instrumentação adequada à sua aplicação.
+
+Segundo o entrevistado, falhas de medição aconteciam, mas não eram frequentes.
+
+Uma das formas de identificar valores incorretos era observar se as medições eram compatíveis com a produção e com o consumo energético do equipamento.
+
+Por exemplo, uma leitura apresentada pelo sistema poderia parecer inadequada quando comparada ao comportamento esperado do processo industrial.
+
+Quando um equipamento apresentava uma falha que impedia sua operação adequada, uma das alternativas era utilizar o equipamento reserva.
+
+### Relação com a pesquisa
+
+Essa experiência sugere que o acompanhamento conjunto de diferentes variáveis pode ser importante para identificar problemas de medição.
+
+Para a pesquisa, podem ser consideradas as seguintes informações:
+
+- Vazão;
+- Pressão;
+- Potência elétrica;
+- Velocidade de rotação;
+- Consumo energético;
+- Estado de comunicação;
+- Momento da última atualização do sensor.
+
+A comparação entre essas variáveis poderá ajudar a identificar medições inconsistentes.
+
+Também oferece uma justificativa prática para investigar um soft sensor de vazão, capaz de estimar a vazão utilizando outras informações disponíveis, como potência, velocidade e altura manométrica.
+
+## 6. Comunicação industrial e falhas de supervisão
+
+O entrevistado confirmou a utilização de sistemas de supervisão e automação industrial, embora tenha informado que parte das decisões operacionais dependia diretamente dos operadores.
+
+Um dos relatos mais importantes da entrevista foi a ocorrência de situações em que a bomba continuava funcionando e o sistema apresentava uma determinada vazão, mas posteriormente era identificada uma falha na comunicação do sistema de controle.
+
+O profissional também relatou que, diante de determinadas falhas, a operação poderia passar a ser realizada manualmente.
+
+Esse procedimento envolvia intervenção operacional e, conforme a situação, o desligamento do sistema automatizado.
+
+### Relação com a pesquisa
+
+Esse relato está diretamente relacionado ao problema central da investigação.
+
+Ele demonstra que a disponibilidade de uma leitura na interface de supervisão não garante, por si só, que a informação esteja atualizada ou que a comunicação esteja funcionando corretamente.
+
+Uma leitura pode permanecer apresentada mesmo quando a transmissão de novas informações foi interrompida.
+
+Essa situação está relacionada ao conceito de dado obsoleto: o sistema continua utilizando ou exibindo um valor que já não representa adequadamente a condição atual do processo.
+
+Por isso, a pesquisa deverá investigar:
+
+1. Atraso na transmissão das informações;
+2. Perda de pacotes;
+3. Ausência de atualização dos sensores;
+4. Ruído nas medições;
+5. Dados incorretos ou falsos;
+6. Comportamento do controlador quando a comunicação é interrompida.
+
+Também será importante investigar como o sistema identifica a diferença entre uma informação atualizada e uma informação antiga que permanece disponível.
+
+## 7. Manutenção e confiabilidade operacional
+
+O profissional informou que a manutenção preditiva era uma prática importante no ambiente industrial.
+
+Essa estratégia envolvia o acompanhamento das condições dos equipamentos e a geração de relatórios para auxiliar na tomada de decisões.
+
+Também mencionou a adoção de práticas de manutenção proativa, com o objetivo de antecipar problemas e evitar intervenções corretivas mais custosas.
+
+Foram citados equipamentos como:
+
+- Desfibrador;
+- Moenda;
+- Triturador;
+- Esteiras;
+- Picador.
+
+Esses equipamentos apresentam características diferentes, mas compartilham a necessidade de acompanhamento operacional e manutenção adequada.
+
+### Relação com a pesquisa
+
+A experiência relatada reforça a importância de considerar a confiabilidade dos equipamentos e das informações utilizadas pelo sistema de controle.
+
+Uma informação incorreta pode dificultar a identificação de uma condição anormal.
+
+Da mesma forma, uma falha de comunicação pode comprometer a capacidade do sistema de supervisão de acompanhar o comportamento real do equipamento.
+
+Isso abre uma possibilidade de integração futura entre:
+
+- Controle energético;
+- Monitoramento da comunicação;
+- Diagnóstico de falhas;
+- Manutenção preditiva;
+- Identificação de condições operacionais anormais.
+
+Entretanto, o foco inicial da pesquisa deverá permanecer no efeito da telemetria degradada sobre o consumo energético e a pressão.
+
+## 8. Pressão, vazão e condições operacionais
+
+O entrevistado explicou que a pressão necessária dependia de diversos fatores, principalmente do tipo de fluido e das características do processo.
+
+Também confirmou a existência de pressões mínimas exigidas para determinadas operações industriais.
+
+Essas pressões eram determinadas pelas necessidades operacionais.
+
+O profissional relatou que a redução da rotação podia ser utilizada para diminuir o consumo energético, desde que fossem respeitadas as condições necessárias ao funcionamento do processo.
+
+### Relação com a pesquisa
+
+Essa informação é especialmente relevante para a proposta de margem adaptativa de pressão.
+
+Em muitos sistemas de bombeamento, pode existir uma margem operacional acima da pressão mínima necessária.
+
+Essa margem pode ser mantida para garantir segurança diante de variações de demanda, incertezas e condições operacionais.
+
+Entretanto, uma margem excessiva pode resultar em maior consumo energético.
+
+A pesquisa pretende investigar se essa margem pode ser ajustada de acordo com a confiabilidade das informações recebidas.
+
+Por exemplo:
+
+- Quando os sensores fornecem informações recentes e confiáveis, o controlador pode trabalhar com uma margem menor, respeitando os limites de segurança.
+- Quando as informações apresentam atraso, ruído ou perda de comunicação, o controlador pode adotar uma margem de segurança maior, conforme a incerteza e o risco operacional.
+- Quando a comunicação é interrompida, o sistema deverá adotar uma estratégia segura de contingência.
+
+O desafio científico consiste em encontrar um equilíbrio entre economia de energia e segurança hidráulica.
+
+A redução da margem não poderá provocar aumento das violações da pressão mínima.
+
+## 9. Síntese das contribuições da entrevista
+
+A experiência do técnico permitiu identificar situações práticas que podem ser relacionadas às hipóteses da pesquisa.
+
+| Observação do profissional | Relação com a pesquisa | Possível investigação |
+|---|---|---|
+| Ajuste manual da rotação | Controle de velocidade | Comparação entre PID e MPC |
+| Aumento do consumo em equipamentos desalinhados | Eficiência energética | Separar perdas mecânicas e efeitos de controle |
+| Leituras incompatíveis com produção e consumo | Confiabilidade dos sensores | Detecção de dados incorretos |
+| Falha de comunicação com a bomba em funcionamento | Telemetria degradada | Atraso e perda de pacotes |
+| Operação manual durante falhas | Estratégia de contingência | Controle seguro com comunicação degradada |
+| Existência de pressão mínima operacional | Segurança hidráulica | Margem adaptativa de pressão |
+| Utilização de equipamentos reserva | Continuidade operacional | Disponibilidade e confiabilidade |
+| Manutenção preditiva e proativa | Monitoramento de condições | Diagnóstico de anomalias |
+
+## 10. Hipóteses de pesquisa derivadas da entrevista
+
+A partir dos relatos, podem ser formuladas as seguintes hipóteses para investigação experimental.
+
+### Hipótese 1 — Degradação da telemetria e consumo energético
+
+A degradação das informações utilizadas pelo controlador pode provocar decisões inadequadas de operação, aumentando o consumo energético do sistema de bombeamento.
+
+**Como investigar:** simular diferentes níveis de atraso, perda de pacotes e ruído, comparando o consumo energético em cada condição.
+
+### Hipótese 2 — Controle adaptativo e margem de pressão
+
+Uma margem de pressão ajustada de acordo com a confiabilidade das informações pode reduzir o consumo energético sem aumentar as violações da pressão mínima.
+
+**Como investigar:** comparar uma margem fixa com uma margem adaptativa, avaliando o consumo e a pressão mínima.
+
+### Hipótese 3 — Soft sensor de vazão
+
+A estimativa de vazão baseada em potência, velocidade da bomba e altura manométrica pode manter a disponibilidade de informações quando a medição direta de vazão estiver indisponível.
+
+**Como investigar:** retirar temporariamente a medição de vazão e comparar a estimativa com os valores de referência da simulação.
+
+### Hipótese 4 — Detecção de dados incorretos
+
+A comparação entre a vazão estimada e a vazão medida pode ajudar a identificar informações inconsistentes ou adulteradas.
+
+**Como investigar:** introduzir alterações controladas nas medições e avaliar a capacidade de detecção, considerando também a quantidade de alarmes falsos.
+
+### Hipótese 5 — Superioridade do controle preditivo em diferentes condições
+
+O MPC pode apresentar vantagens sobre o PID em determinadas condições de operação, mas sua superioridade pode diminuir quando a comunicação apresenta degradação significativa.
+
+**Como investigar:** comparar os controladores em diferentes níveis de atraso, perda de pacotes e ruído.
+
+## 11. Proposta de aplicação no EPyT-Flow
+
+A entrevista oferece subsídios para construir um conjunto de cenários experimentais.
+
+Sugere-se organizar os testes da seguinte forma:
+
+**Cenário A — Operação normal**
+
+- Sensores funcionando adequadamente;
+- Comunicação sem atrasos relevantes;
+- Medições disponíveis;
+- Controle convencional.
+
+**Cenário B — Atraso de comunicação**
+
+- Informações recebidas com diferentes atrasos;
+- Avaliação do comportamento dos controladores;
+- Comparação do consumo energético.
+
+**Cenário C — Perda de pacotes**
+
+- Interrupção parcial da transmissão;
+- Ausência temporária de medições;
+- Avaliação da continuidade do controle.
+
+**Cenário D — Ruído de medição**
+
+- Inserção de ruído nas informações dos sensores;
+- Avaliação da estabilidade e da precisão do controle.
+
+**Cenário E — Dados incorretos**
+
+- Inserção de valores inconsistentes;
+- Avaliação da detecção de anomalias;
+- Medição da frequência de alarmes falsos.
+
+**Cenário F — Ausência da medição de vazão**
+
+- Indisponibilidade temporária do sensor;
+- Utilização do soft sensor;
+- Comparação entre vazão estimada e vazão de referência.
+
+**Cenário G — Margem adaptativa de pressão**
+
+- Comparação entre margem fixa e variável;
+- Ajuste conforme idade e confiabilidade das informações;
+- Verificação do consumo energético;
+- Verificação das violações da pressão mínima.
+
+Os cenários deverão utilizar as mesmas condições hidráulicas e de demanda quando forem comparados, para que as diferenças observadas possam ser atribuídas às estratégias avaliadas.
+
+## 12. Indicadores para avaliação experimental
+
+A entrevista também ajuda a orientar quais indicadores deverão ser considerados nos experimentos.
+
+| Indicador | Unidade ou forma de avaliação | Finalidade |
+|---|---|---|
+| Energia consumida | kWh | Quantificar o consumo total |
+| Energia específica | kWh/m³ | Avaliar a energia por volume bombeado |
+| Custo energético | R$ | Estimar o impacto financeiro |
+| Pressão mínima | m.c.a. ou unidade equivalente | Verificar a segurança hidráulica |
+| Violações de pressão | Número, duração e intensidade | Avaliar a qualidade do abastecimento |
+| Vazão | m³/h ou L/s | Avaliar o desempenho hidráulico |
+| Atraso de comunicação | ms ou s | Caracterizar a telemetria |
+| Perda de pacotes | % | Avaliar a confiabilidade da transmissão |
+| Erro do soft sensor | MAE ou RMSE | Avaliar a precisão da estimativa |
+| Alarmes falsos | Número ou taxa | Avaliar o diagnóstico de anomalias |
+
+Para calcular o custo energético, poderá ser utilizada a relação:
+
+**Custo de energia:**
+
+Custo (R$) = Energia consumida (kWh) × Tarifa de energia (R$/kWh).
+
+A energia específica poderá ser calculada por:
+
+Energia específica (kWh/m³) = Energia consumida (kWh) ÷ Volume bombeado (m³).
+
+A economia percentual poderá ser avaliada comparando o consumo do sistema de referência com o consumo do sistema proposto, desde que as condições operacionais sejam equivalentes.
+
+## 13. Limitações e pontos que precisam de confirmação
+
+Apesar da contribuição da entrevista, algumas informações precisam ser aprofundadas antes de serem utilizadas como premissas técnicas.
+
+1. Não foram fornecidos valores numéricos de potência, pressão, vazão ou consumo energético.
+2. Não foi especificado o protocolo de comunicação utilizado na usina.
+3. Não foram identificados os modelos dos sensores e dos inversores.
+4. Não foi possível determinar a frequência ou a duração das falhas de comunicação.
+5. Não foram fornecidos registros históricos que permitam quantificar o aumento de consumo causado por problemas de instrumentação ou operação.
+6. Não foi estabelecido um valor numérico para a pressão mínima.
+7. Não foi possível determinar se as falhas de comunicação relatadas eram causadas por atraso, perda de pacotes, falha de supervisão ou outros problemas.
+8. A utilização de inversores variava conforme o equipamento e o processo industrial.
+
+Além disso, a experiência relatada ocorreu em uma usina de cana-de-açúcar. Portanto, suas condições de operação não são necessariamente iguais às de uma estação de bombeamento de distribuição de água.
+
+As informações devem ser utilizadas como evidências qualitativas para orientar a pesquisa, e não como comprovação quantitativa de resultados.
+
+## 14. Conclusão
+
+A entrevista apresentou contribuições relevantes para a investigação sobre bombeamento com telemetria IoT degradada.
+
+Os relatos demonstraram que o funcionamento de sistemas industriais de bombeamento depende de diferentes fatores, incluindo condições hidráulicas, estado mecânico dos equipamentos, instrumentação, comunicação e decisões operacionais.
+
+Três aspectos se destacaram.
+
+O primeiro foi a relação entre as condições de operação dos equipamentos e o consumo energético. Vibrações, desalinhamento, cavitação e problemas mecânicos foram associados pelo profissional a situações de aumento do consumo.
+
+O segundo foi a dependência de informações de instrumentação e supervisão para acompanhar o funcionamento dos equipamentos. A ocorrência de falhas de comunicação, inclusive em situações nas quais a bomba permanecia em funcionamento, evidencia a importância de verificar a atualidade e a confiabilidade dos dados.
+
+O terceiro foi a necessidade de respeitar as condições mínimas de pressão e vazão durante a operação. A experiência com ajustes manuais de rotação e redução do consumo energético oferece uma motivação prática para investigar estratégias de controle adaptativo.
+
+Dessa forma, a entrevista reforça a relevância de estudar mecanismos capazes de identificar informações degradadas, estimar variáveis indisponíveis e ajustar a margem de pressão conforme a confiabilidade da telemetria.
+
+Conclui-se que os relatos fornecem justificativas práticas para desenvolver uma investigação experimental envolvendo PID, MPC, soft sensor de vazão, detecção de dados incorretos e margem adaptativa de pressão.
+
+A contribuição central da pesquisa será verificar, por meio de simulação e avaliação quantitativa, se essas estratégias podem reduzir o consumo específico de energia sem comprometer a pressão mínima necessária ao abastecimento.
+
+---
+
+## 15. Encaminhamentos para a pesquisa
+
+Com base na entrevista, recomenda-se:
+
+1. Registrar os relatos como evidências qualitativas exploratórias.
+2. Investigar como o EPyT-Flow representa bombas, sensores e falhas de comunicação.
+3. Verificar como o EPyT-Control implementa os controladores PID e MPC.
+4. Desenvolver um modelo de degradação da telemetria.
+5. Implementar e avaliar um soft sensor de vazão.
+6. Desenvolver uma estratégia de margem adaptativa de pressão.
+7. Comparar as estratégias utilizando energia específica, custo energético e violações da pressão mínima.
+8. Retornar ao profissional com perguntas complementares para esclarecer aspectos operacionais e tecnológicos.
+
+**Resultado esperado:** estabelecer uma ligação entre problemas observados na prática industrial e cenários experimentais capazes de avaliar o impacto da telemetria degradada sobre a eficiência energética e a segurança hidráulica de sistemas de bombeamento.
